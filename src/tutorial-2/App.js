@@ -7,10 +7,8 @@ const Form = () => {
     const changeCheck = (e) => {
         if(e.target.name === 'email'){
             email = e.target.value
-            console.log(email)
         } else if (e.target.name === 'password') {
             password = e.target.value
-            console.log(password)
         }
     }
 
