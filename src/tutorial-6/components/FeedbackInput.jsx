@@ -3,18 +3,34 @@ import React from "react";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 
-const FeedbackInput = (props) => {
-  
+const FeedbackInput = ({ setComments, comments }) => {
   const change = (e) => {
-    if (e.target.name.value && e.target.email.value && e.target.text.value){
-    e.preventDefault()
-    const date = new Date()
-    const createdAt = date.getDate() + '/' + (date.getMonth() + 1) + '/' + date.getFullYear() + ' ' + date.getHours() + ":" + date.getMinutes();
-    props.setComments([...props.comments, {name:e.target.name.value, email:e.target.email.value, text:e.target.text.value, createdAt: createdAt}]);
-    e.target.reset()
+    if (e.target.name.value && e.target.email.value && e.target.text.value) {
+      e.preventDefault();
+      const date = new Date();
+      const createdAt =
+        date.getDate() +
+        "/" +
+        (date.getMonth() + 1) +
+        "/" +
+        date.getFullYear() +
+        " " +
+        date.getHours() +
+        ":" +
+        date.getMinutes();
+      const { email, name, text } = e.target;
+      setComments([
+        ...comments,
+        {
+          name: name.value,
+          email: email.value,
+          text: text.value,
+          createdAt: createdAt,
+        },
+      ]);
+      e.target.reset();
     }
   };
-
 
   return (
     <>
@@ -47,10 +63,7 @@ const FeedbackInput = (props) => {
               />
             </div>
             <div className="input">
-              <Button
-                type="submit"
-                variant="outlined"
-              >
+              <Button type="submit" variant="outlined">
                 Отправить
               </Button>
             </div>
